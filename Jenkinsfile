@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {
                     // Connect to your target server and deploy the Docker image
-                    sh 'ssh roja1998@register-app-pipeline "docker pull roja1998/register-app-pipeline:latest && docker run -d roja1998/register-app-pipeline:latest"'
+                    sh 'ssh roja@register-app-pipeline "docker pull register-app-pipeline:latest && docker run -d register-app-pipeline:latest"'
                 }
             }
         }  
