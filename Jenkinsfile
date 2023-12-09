@@ -63,22 +63,13 @@ pipeline {
             }
 
        }
-	 stage("Trivy Scan") {
-           steps {
-               script {
-	            sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image roja1998/register-app-pipeline:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
-               }
-           }
-       } 
-	 stage ('Cleanup Artifacts') {
-           steps {
-               script {
-                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker rmi ${IMAGE_NAME}:latest"
-               }
-          }
-       }  
-      
-           
+	stage('Deploy to Target Server') {
+            steps {
+                script {
+                    // Connect to your target server and deploy the Docker image
+                    sh 'ssh roja1998/register-app-pipeline "docker pull your-docker-image:latest && docker run -d your-docker-image:latest"'
+                }
+            }
+        }   
    }
 }
