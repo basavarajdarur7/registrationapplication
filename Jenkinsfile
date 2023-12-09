@@ -67,8 +67,8 @@ pipeline {
             steps {
                 script {
                     // Connect to your target server and deploy the Docker image
-                    sh 'ssh roja1998/register-app-pipeline "docker pull tomcat:latest"' 
-			sh 'ssh roja1998/register-app-pipeline "docker run -d tomcat:latest"'
+                    sh 'ssh roja1998/register-app-pipeline "docker pull "${IMAGE_TAG}":latest"' 
+			sh 'ssh roja1998/register-app-pipeline "docker run -d "${IMAGE_TAG}":latest"'
                 }
             }
         }   
